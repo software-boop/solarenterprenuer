@@ -1,0 +1,27 @@
+@import "tailwindcss";
+.custom-menu .ant-menu-item-selected,
+.custom-menu .ant-menu-item:active {
+  background: linear-gradient(90deg, #ecfdf5, #d1fae5) !important;
+  color: #10b981 !important;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.custom-menu .ant-menu-item:hover {
+  background: #ecfdf5 !important;
+  color: #10b981 !important;
+  border-radius: 8px;
+} 
+
+
+canvas {
+  transition: all 0.3s ease;
+}
+
+.ant-card {
+  transition: transform 0.2s ease;
+}
+
+.ant-card:hover {
+  transform: translateY(-4px);
+}
