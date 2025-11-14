@@ -111,7 +111,7 @@ export default function SolarForm({ onSuccess }) {
         longitude: loc.longitude,
       };
       const res = await axios.post(
-        "https://register-backend-1-ir0a.onrender.com/api/entrepreneur/register",
+        "https://api.brihaspathitech.com/api/entrepreneur/register",
         payload
       );
       toast.success(res.data.message || "Registration successful 🎉");
