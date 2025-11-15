@@ -69,7 +69,7 @@ export default function CreateCoordinator() {
       }
 
       const res = await axios.post(
-        "http://localhost:5000/api/admin/create-coordinator",
+        "https://api.brihaspathitech.com/api/admin/create-coordinator",
         values,
         {
           headers: {
