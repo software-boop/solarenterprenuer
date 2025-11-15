@@ -19,12 +19,14 @@ import Districtdash from "./Components/Distrcictdash";
 import NotFound from "./Components/not-found"; // ✅ updated import
 import DistrictStats from "./Components/DistrictStats";
 import DistrictDashboard from "./Components/DistrictDashboard";
+import Demo from './Components/Demo'
 
 function App() {
   const routes = useRoutes([
     // ============================
     // 🔹 PUBLIC ROUTES
     // ============================
+      { path: "/", element: < Demo/> },
     { path: "/registration", element: <Solar /> },
     { path: "/login", element: <Login /> },
 

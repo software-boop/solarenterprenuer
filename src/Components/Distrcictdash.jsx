@@ -22,7 +22,7 @@ import {
 import * as XLSX from "xlsx";
 import axios from "axios";
 
-const API_BASE = "http://localhost:5000/api/district-coordinator"; // Change for production
+const API_BASE = "https://api.brihaspathitech.com/api/district-coordinator"; // Change for production
 const BRAND = "#07518a";
 
 const Districtdash = () => {

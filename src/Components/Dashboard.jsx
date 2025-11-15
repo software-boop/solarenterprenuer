@@ -22,7 +22,7 @@ import {
 } from "@ant-design/icons";
 
 const BRAND = "#07518a";
-const API_BASE = "http://localhost:5000/api/admin";
+const API_BASE = "https://api.brihaspathitech.com/api/admin";
 
 export default function Dashboard() {
   const [entrepreneurs, setEntrepreneurs] = useState([]);
