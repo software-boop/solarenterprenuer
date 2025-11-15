@@ -19,7 +19,7 @@ import {
   CalendarOutlined,
 } from "@ant-design/icons";
 
-const API_BASE = "https://api.brihaspathitech.com//api/district-coordinator"; // Change for production
+const API_BASE = "https://api.brihaspathitech.com/api/district-coordinator"; // Change for production
 const BRAND = "#07518a";
 
 const DistrictDashboard = () => {
@@ -32,7 +32,7 @@ const DistrictDashboard = () => {
   const fetchEntrepreneurs = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${API_BASE}/entrepreneurs`, {
+      const res = await axios.get(`${API_BASE}/entrepreneursfetch`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = res.data.data || [];

@@ -36,7 +36,7 @@ const Districtdash = () => {
   const fetchEntrepreneurs = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${API_BASE}/entrepreneurs`, {
+      const res = await axios.get(`${API_BASE}/entrepreneursfetch`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEntrepreneurs(res.data.data || []);
