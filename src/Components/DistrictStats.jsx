@@ -16,7 +16,7 @@ import {
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const BRAND = "#07518a";
-const API_BASE = "https://api.brihaspathitech.com/api/admin";
+const API_BASE = "https://api.brihaspathi.com/api/admin";
 
 // ✅ Andhra Pradesh Districts (25)
 const districtsList = [

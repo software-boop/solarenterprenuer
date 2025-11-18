@@ -23,7 +23,7 @@ function Demo() {
       }}
     >
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"></div>
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-[4px]"></div>
 
       <BackgroundBeamsWithCollision className="relative z-20 px-4 md:px-6 w-full">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto py-12 md:py-20">
@@ -68,7 +68,7 @@ function Demo() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-2 cursor-pointer">
+          <div className="flex flex-col sm:flex-row gap-4 mt-2 ">
             {/* Admin Login */}
           {/* Admin Login */}
 <button

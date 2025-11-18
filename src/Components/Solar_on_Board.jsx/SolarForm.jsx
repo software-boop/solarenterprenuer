@@ -42,26 +42,16 @@ import solarlogo_2 from "../../assets/images/REC_logo.svg (1) (1).png";
 import solarlogo_3 from "../../assets/images/Skill-India(1).webp";
 
 // =====================
-// 📍 Data
+// 📍 Data (ONLY AP)
 // =====================
-const states = ["Andhra Pradesh", "Telangana"];
+const states = ["Andhra Pradesh"];
 
 const districtsAP = [
   "Alluri Sitarama Raju", "Anakapalli", "Anantapur", "Annamayya", "Bapatla",
   "Chittoor", "East Godavari", "Eluru", "Guntur", "Kakinada", "Konaseema",
   "Krishna", "Kurnool", "Nandyal", "NTR", "Palnadu", "Parvathipuram Manyam",
-  "Prakasam", "Sri Potti Sriramulu Nellore", "Sri Sathya Sai", "Srikakulam",
+  "Prakasam", "Sri Potti Sriramulu, Nellore", "Sri Sathya Sai", "Srikakulam",
   "Tirupati", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"
-];
-
-const districtsTS = [
-  "Adilabad", "Bhadradri Kothagudem", "Hanamkonda", "Hyderabad", "Jagtial",
-  "Jangaon", "Jayashankar Bhupalpally", "Jogulamba Gadwal", "Kamareddy",
-  "Karimnagar", "Khammam", "Komaram Bheem Asifabad", "Mahabubabad",
-  "Mahabubnagar", "Mancherial", "Medak", "Medchal–Malkajgiri", "Mulugu",
-  "Nagarkurnool", "Nalgonda", "Narayanpet", "Nirmal", "Nizamabad", "Peddapalli",
-  "Rajanna Sircilla", "Rangareddy", "Sangareddy", "Siddipet", "Suryapet",
-  "Vikarabad", "Wanaparthy", "Warangal", "Yadadri Bhongir"
 ];
 
 // =====================
@@ -69,7 +59,7 @@ const districtsTS = [
 // =====================
 export default function SolarForm({ onSuccess }) {
   const [form] = Form.useForm();
-  const [selectedState, setSelectedState] = useState("");
+  const [selectedState, setSelectedState] = useState("Andhra Pradesh"); // Default
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
 
@@ -106,12 +96,13 @@ export default function SolarForm({ onSuccess }) {
       const loc = await getUserLocation();
       const payload = {
         ...values,
+        state: "Andhra Pradesh",
         mobile: values.mobile.trim(),
         latitude: loc.latitude,
         longitude: loc.longitude,
       };
       const res = await axios.post(
-        "https://api.brihaspathitech.com/api/entrepreneur/register",
+        "https://api.brihaspathi.com/api/entrepreneur/register",
         payload
       );
       toast.success(res.data.message || "Registration successful 🎉");
@@ -143,7 +134,7 @@ export default function SolarForm({ onSuccess }) {
       <div
         className="flex flex-col lg:flex-row"
         style={{
-          height: "100vh", // 🔹 Full viewport height
+          height: "100vh",
           overflow: "hidden",
         }}
       >
@@ -186,10 +177,6 @@ export default function SolarForm({ onSuccess }) {
               </Space>
             </div>
 
-            {/* Header */}
-           
-
-            {/* Form */}
             <div className="px-6 pb-8">
               <Progress
                 percent={Math.round(progress)}
@@ -216,10 +203,7 @@ export default function SolarForm({ onSuccess }) {
                       <Input
                         prefix={<UserOutlined />}
                         placeholder="John Doe"
-                        style={{
-                          borderRadius: 10,
-                          border: `1px solid ${BORDER_COLOR}`,
-                        }}
+                        style={{ borderRadius: 10, border: `1px solid ${BORDER_COLOR}` }}
                       />
                     </Form.Item>
                   </Col>
@@ -236,10 +220,7 @@ export default function SolarForm({ onSuccess }) {
                       <Input
                         prefix={<MailOutlined />}
                         placeholder="you@example.com"
-                        style={{
-                          borderRadius: 10,
-                          border: `1px solid ${BORDER_COLOR}`,
-                        }}
+                        style={{ borderRadius: 10, border: `1px solid ${BORDER_COLOR}` }}
                       />
                     </Form.Item>
                   </Col>
@@ -263,10 +244,7 @@ export default function SolarForm({ onSuccess }) {
                         addonBefore="+91"
                         placeholder="9876543210"
                         maxLength={10}
-                        style={{
-                          borderRadius: 10,
-                          border: `1px solid ${BORDER_COLOR}`,
-                        }}
+                        style={{ borderRadius: 10, border: `1px solid ${BORDER_COLOR}` }}
                       />
                     </Form.Item>
                   </Col>
@@ -283,10 +261,7 @@ export default function SolarForm({ onSuccess }) {
                       <Input
                         prefix={<GlobalOutlined />}
                         placeholder="500001"
-                        style={{
-                          borderRadius: 10,
-                          border: `1px solid ${BORDER_COLOR}`,
-                        }}
+                        style={{ borderRadius: 10, border: `1px solid ${BORDER_COLOR}` }}
                       />
                     </Form.Item>
                   </Col>
@@ -297,18 +272,11 @@ export default function SolarForm({ onSuccess }) {
                     <Form.Item
                       name="state"
                       label="State"
+                      initialValue="Andhra Pradesh"
                       rules={[{ required: true, message: "Select your state" }]}
                     >
-                      <Select
-                        placeholder="Select State"
-                        onChange={setSelectedState}
-                        style={{ borderRadius: 10 }}
-                      >
-                        {states.map((s) => (
-                          <Option key={s} value={s}>
-                            {s}
-                          </Option>
-                        ))}
+                      <Select disabled style={{ borderRadius: 10 }}>
+                        <Option value="Andhra Pradesh">Andhra Pradesh</Option>
                       </Select>
                     </Form.Item>
                   </Col>
@@ -319,17 +287,10 @@ export default function SolarForm({ onSuccess }) {
                       label="District"
                       rules={[{ required: true, message: "Select your district" }]}
                     >
-                      <Select
-                        placeholder="Select District"
-                        disabled={!selectedState}
-                        style={{ borderRadius: 10 }}
-                      >
-                        {(selectedState === "Andhra Pradesh"
-                          ? districtsAP
-                          : districtsTS
-                        ).map((d) => (
-                          <Option key={d} value={d}>
-                            {d}
+                      <Select placeholder="Select District" style={{ borderRadius: 10 }}>
+                        {districtsAP.map((district) => (
+                          <Option key={district} value={district}>
+                            {district}
                           </Option>
                         ))}
                       </Select>
@@ -345,10 +306,7 @@ export default function SolarForm({ onSuccess }) {
                   <Input
                     prefix={<EnvironmentOutlined />}
                     placeholder="Hyderabad"
-                    style={{
-                      borderRadius: 10,
-                      border: `1px solid ${BORDER_COLOR}`,
-                    }}
+                    style={{ borderRadius: 10, border: `1px solid ${BORDER_COLOR}` }}
                   />
                 </Form.Item>
 
@@ -393,32 +351,28 @@ export default function SolarForm({ onSuccess }) {
         {/* RIGHT PANEL */}
         <motion.div
           className="lg:w-1/2 hidden lg:flex flex-col justify-center items-center text-white relative overflow-hidden"
-          style={{
-            height: "100vh",
-            background: BRAND_GRADIENT,
-          }}
+          style={{ height: "100vh", background: BRAND_GRADIENT }}
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
         >
-
- <div className="text-center px-6 py-6 bg-white mb-24 rounded-2xl">
-              <Title level={3} style={{ color: BRAND_PRIMARY, fontWeight: 700 }}>
-                Solar Entrepreneur Onboarding
-              </Title>
-              <Text style={{ color: TEXT_SUB, fontSize: 15 }}>
-                Join the National Solar Mission and shape India’s renewable future.
-              </Text>
-            </div>
+          <div className="text-center px-6 py-6 bg-white mb-24 rounded-2xl">
+            <Title level={3} style={{ color: BRAND_PRIMARY, fontWeight: 700 }}>
+              Solar Entrepreneur Onboarding
+            </Title>
+            <Text style={{ color: TEXT_SUB, fontSize: 15 }}>
+              Join the National Solar Mission and shape India’s renewable future.
+            </Text>
+          </div>
 
           <div
             className="absolute inset-0 opacity-10"
             style={{
-              backgroundImage:
-                "radial-gradient(white 1px, transparent 1px)",
+              backgroundImage: "radial-gradient(white 1px, transparent 1px)",
               backgroundSize: "24px 24px",
             }}
           />
+
           <div className="relative z-10 text-center max-w-md px-6">
             <img
               src="https://www.brihaspathi.com/highbtlogo%20white-%20tm.png"

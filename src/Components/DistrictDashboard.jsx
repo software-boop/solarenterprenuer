@@ -19,7 +19,7 @@ import {
   CalendarOutlined,
 } from "@ant-design/icons";
 
-const API_BASE = "https://api.brihaspathitech.com/api/district-coordinator"; // Change for production
+const API_BASE = "https://api.brihaspathi.com/api/district-coordinator"; // Change for production
 const BRAND = "#07518a";
 
 const DistrictDashboard = () => {

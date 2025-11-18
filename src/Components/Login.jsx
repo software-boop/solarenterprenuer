@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const { Text } = Typography;
 const BRAND = "#07518a";
 const LOGO = "https://www.brihaspathi.com/highbtlogo%20tm%20(1).png";
-const API_URL = "https://api.brihaspathitech.com/api/auth/login";
+const API_URL = "https://api.brihaspathi.com/api/auth/login";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);

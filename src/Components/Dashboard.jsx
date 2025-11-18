@@ -22,7 +22,7 @@ import {
 } from "@ant-design/icons";
 
 const BRAND = "#07518a";
-const API_BASE = "https://api.brihaspathitech.com/api/admin";
+const API_BASE = "https://https://api.brihaspathi.com/api/admin";
 
 export default function Dashboard() {
   const [entrepreneurs, setEntrepreneurs] = useState([]);
@@ -327,7 +327,7 @@ export default function Dashboard() {
         }}
       >
         <h1 style={{ color: BRAND, fontWeight: "bold", fontSize: 28 }}>
-          ☀️ Solar Entrepreneur Admin Dashboard
+          {/* ☀️ Solar Entrepreneur Admin Dashboard */}
         </h1>
 
         <Space>

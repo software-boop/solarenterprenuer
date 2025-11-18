@@ -24,7 +24,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 const { Title } = Typography;
 const BRAND = "#07518a";
-const API_BASE = "https://api.brihaspathitech.com/api/admin";
+const API_BASE = "https://api.brihaspathi.com/api/admin";
 
 export default function ManageCoordinators() {
   const [loading, setLoading] = useState(false);
@@ -230,7 +230,7 @@ export default function ManageCoordinators() {
               textAlign: "center",
             }}
           >
-            👩‍💼 Manage District Coordinators
+             Manage District Coordinators
           </Title>
         </Col>
         <Col xs={24} sm={12} className="flex justify-center sm:justify-end">
