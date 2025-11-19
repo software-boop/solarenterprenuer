@@ -1,16 +1,23 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Button, Card, Row, Col, Typography } from "antd";
+import {
+  LoginOutlined,
+  UserAddOutlined,
+  TeamOutlined,
+} from "@ant-design/icons";
 import { BackgroundBeamsWithCollision } from "./BackgroundBeamsWithCollision";
 
 import solarlogo from "../assets/images/MNRE_India1(1).png";
 import solarlogo_1 from "../assets/images/Niesbud-High-Resolution-Logo(1).png";
 import solarlogo_2 from "../assets/images/REC_logo.svg (1) (1).png";
 import solarlogo_3 from "../assets/images/Skill-India(1).webp";
-
 import mainweb_logo from "../assets/images/highbtlogo white- tm.png";
 import background_image from "../assets/images/renewable-power-generation-through-hybrid-energy-farm-with-wind-turbines-solar-panels-concept-renewable-energy-power-generation-hybrid-energy-farm-wind-turbines-solar-panels.jpg";
 
-function Demo() {
+const { Title, Paragraph } = Typography;
+
+const Demo = () => {
   const navigate = useNavigate();
 
   return (
@@ -22,95 +29,119 @@ function Demo() {
         backgroundPosition: "center",
       }}
     >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-[4px]"></div>
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/40 "></div>
 
-      <BackgroundBeamsWithCollision className="relative z-20 px-4 md:px-6 w-full">
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto py-12 md:py-20">
+      <BackgroundBeamsWithCollision className="relative z-20 w-full px-4 sm:px-8 py-6 sm:py-10">
+        <div className="text-center mx-auto w-full max-w-4xl">
 
-          {/* Partner Logos (Top) */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 mb-10 md:mb-12 w-full max-w-2xl">
-            {[solarlogo, solarlogo_1, solarlogo_2, solarlogo_3].map(
-              (logo, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-xl p-3 shadow-md hover:shadow-xl transition-all duration-300 flex justify-center items-center"
+          {/* 🔹 Partner Logos */}
+          <Row gutter={[12, 12]} justify="center" className="mb-6 sm:mb-10">
+            {[solarlogo, solarlogo_1, solarlogo_2, solarlogo_3].map((logo, i) => (
+              <Col xs={6} sm={6} md={6} lg={6} key={i}>
+                <Card
+                  hoverable
+                  style={{
+                    borderRadius: "10px",
+                    padding: "6px",
+                    minHeight: "60px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  bodyStyle={{ padding: 6 }}
                 >
                   <img
                     src={logo}
-                    alt={`partner-logo-${index}`}
-                    className="h-12 md:h-16 object-contain"
+                    alt={`logo-${i}`}
+                    className="object-contain"
+                    style={{ width: "100%", maxHeight: "45px" }}
                   />
-                </div>
-              )
-            )}
-          </div>
+                </Card>
+              </Col>
+            ))}
+          </Row>
 
-          {/* Main Logo */}
+          {/* 🔸 Main Logo */}
           <img
             src={mainweb_logo}
             alt="Main Logo"
-            className="w-28 md:w-40 lg:w-48 mb-6 drop-shadow-2xl"
+            className="mx-auto mb-4 sm:mb-6"
+            style={{
+              width: "60px",
+              height: "auto",
+            }}
           />
 
-          {/* Heading */}
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-md">
+          {/* 🔻 Headline */}
+          <Title
+            level={2}
+            style={{
+              color: "white",
+              fontSize: "1.8rem",
+              lineHeight: 1.3,
+              textShadow: "2px 2px 5px rgba(0,0,0,0.6)",
+            }}
+            className="sm:text-4xl md:text-5xl"
+          >
             Power the Future
-          </h1>
+          </Title>
 
-          {/* Subheading */}
-          <p className="text-base md:text-xl text-gray-200 leading-relaxed mb-10 max-w-2xl drop-shadow-md px-2">
+          {/* 🌍 Subtext */}
+          <Paragraph
+            style={{
+              color: "#e0e0e0",
+              fontSize: "0.95rem",
+              lineHeight: 1.5,
+              maxWidth: "650px",
+              margin: "auto",
+              marginBottom: "20px",
+            }}
+            className="sm:text-lg"
+          >
             Join India’s clean-energy revolution. Upskill, earn certifications,
-            and grow with the government-backed{" "}
-            <span className="font-bold text-orange-400">
+            and grow with the{" "}
+            <span style={{ color: "#ffa940", fontWeight: "600" }}>
               Solar Entrepreneurship Program
             </span>.
-          </p>
+          </Paragraph>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-2 ">
-            {/* Admin Login */}
-          {/* Admin Login */}
-<button
-  onClick={() => navigate("/login?type=admin")}
-  className="cta cta-blue"
->
-  <span>Admin Login</span>
-  <svg width="15px" height="10px" viewBox="0 0 13 10">
-    <path d="M1,5 L11,5"></path>
-    <polyline points="8 1 12 5 8 9"></polyline>
-  </svg>
-</button>
+          {/* 🔘 Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-4">
+            <Button
+              type="primary"
+              icon={<LoginOutlined />}
+              size="large"
+              block={window.innerWidth < 640}
+              onClick={() => navigate("/login?type=admin")}
+            >
+              Admin Login
+            </Button>
 
-{/* Coordinator Login */}
-<button
-  onClick={() => navigate("/login?type=coordinator")}
-  className="cta cta-green"
->
-  <span>Coordinator Login</span>
-  <svg width="15px" height="10px" viewBox="0 0 13 10">
-    <path d="M1,5 L11,5"></path>
-    <polyline points="8 1 12 5 8 9"></polyline>
-  </svg>
-</button>
+            <Button
+              type="default"
+              icon={<TeamOutlined />}
+              size="large"
+              block={window.innerWidth < 640}
+              onClick={() => navigate("/login?type=coordinator")}
+            >
+              Coordinator Login
+            </Button>
 
-{/* Registration */}
-<button
-  onClick={() => navigate("/registration")}
-  className="cta cta-orange"
->
-  <span>Register Now</span>
-  <svg width="15px" height="10px" viewBox="0 0 13 10">
-    <path d="M1,5 L11,5"></path>
-    <polyline points="8 1 12 5 8 9"></polyline>
-  </svg>
-</button>
-
+            <Button
+              type="dashed"
+              icon={<UserAddOutlined />}
+              size="large"
+              block={window.innerWidth < 640}
+              onClick={() => navigate("/registration")}
+            >
+              Register Now
+            </Button>
           </div>
         </div>
       </BackgroundBeamsWithCollision>
     </div>
   );
-}
+};
 
 export default Demo;

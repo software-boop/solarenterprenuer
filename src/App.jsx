@@ -48,7 +48,7 @@ function App() {
     // 🔹 DISTRICT COORDINATOR (public for v1)
     // ============================
     {
-      path: "/district-coordinator",
+      path: "/district-cordinator",
       element: <DistrictLayout />,
       children: [{ index: true, element: <DistrictDashboard /> },
 

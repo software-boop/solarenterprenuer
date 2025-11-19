@@ -1,259 +1,237 @@
 import React, { useState, useEffect } from "react";
 import {
-  AppstoreOutlined,
-  DesktopOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PieChartOutlined,
-  BellOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
 import {
   Button,
   Menu,
   Layout,
-  Avatar,
-  Badge,
-  Tooltip,
-  Dropdown,
   Drawer,
+  Tooltip,
 } from "antd";
 import { motion } from "framer-motion";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
+
+// Logos
 import B_white from "../../src/assets/Logos/only B logo white (1).png";
 import B_blues from "../../src/assets/Logos/only B logo (1).png";
 
 const { Header, Sider, Content } = Layout;
 
-const SOLAR_PRIMARY = "#f97316";
-const SOLAR_SECONDARY = "#fb923c";
-const LIGHT_GRAY = "#f9fafb";
-const TEXT_COLOR = "#222";
+/* 🎨 District Coordinator Theme */
+const BRAND = {
+  primary: "#07518a",
+  // secondary: "#0ea5e9",
+  // lightBg: "#f1f5f9",
+  white: "#ffffff",
+  textDark: "#1f2937",
+};
 
 export default function DistrictLayout() {
   const navigate = useNavigate();
   const location = useLocation();
+
   const [collapsed, setCollapsed] = useState(false);
   const [mobile, setMobile] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  // Detect screen width for responsiveness
+  /* 🔁 Responsive Handling */
   useEffect(() => {
     const handleResize = () => {
-      setMobile(window.innerWidth <= 992);
-      if (window.innerWidth > 992) setDrawerOpen(false);
+      const isMobile = window.innerWidth <= 992;
+      setMobile(isMobile);
+      if (!isMobile) setDrawerOpen(false);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // ✅ Highlight active tab
-  const selectedKey = location.pathname.includes("records") ? "2" : "1";
+  /* 🔥 Active Tab Logic */
+  const getSelectedKey = () => {
+    if (location.pathname === "/district-coordinator") return "1";
+    if (location.pathname.includes("aprovals")) return "2";
+    return "1";
+  };
 
-  const items = [
+  /* 📌 Sidebar Menu Items */
+  const menuItems = [
     {
       key: "1",
       icon: <PieChartOutlined />,
       label: "Dashboard",
-      onClick: () => navigate("/district-coordinator"),
+      onClick: () => navigate("/district-cordinator"),
     },
-     {
+    {
       key: "2",
       icon: <PieChartOutlined />,
-      label: "Aprovals",
+      label: "Approvals",
       onClick: () => navigate("aprovals"),
     },
-   
   ];
 
-  const notificationMenu = (
-    <Menu
-      items={[
-        { key: "1", label: "New registration approved" },
-        // { key: "2", label: "5 pending applications" },
-        // { key: "3", label: "Server maintenance at 11 PM" },
-      ]}
-    />
-  );
-
+  /* 🧱 Sidebar Content */
   const SidebarContent = (
     <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
-      {/* === Sidebar Header === */}
+      {/* Logo Section */}
       <div
         style={{
-          background: `linear-gradient(90deg, ${SOLAR_PRIMARY}, ${SOLAR_SECONDARY})`,
-          padding: "14px 16px",
+          background: `linear-gradient(90deg, ${BRAND.primary}, ${BRAND.secondary})`,
+          padding: collapsed ? "10px" : "14px 20px",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: collapsed ? "center" : "space-between",
+          transition: "0.3s",
         }}
       >
-      <Avatar
-               shape="square"
-               size={collapsed ? 36 : 48}
-               src={collapsed ? B_blues : "https://www.brihaspathi.com/highbtlogo%20tm%20(1).png"}
-               style={{
-                 transition: "all 0.3s ease",
-                 height: collapsed ? "15px" : "40px",
-                 width: collapsed ? "15px" : "auto",
-                 background: "transparent",
-               }}
-             />
+        <motion.img
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          src={collapsed ? B_blues : "https://www.brihaspathi.com/highbtlogo%20tm%20(1).png"}
+          alt="BTL Logo"
+          style={{
+            height: collapsed ? "28px" : "42px",
+            objectFit: "contain",
+            transition: "0.3s",
+          }}
+        />
+
         {!mobile && (
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
-            style={{ color: "#fff", background: "transparent", fontSize: 18 }}
+            style={{ color: BRAND.primary, background: "rgba(255,255,255,0.25)", borderRadius: 8 }}
           />
         )}
       </div>
 
-      {/* === Sidebar Menu === */}
+      {/* Menu */}
       <Menu
         theme="light"
         mode="inline"
-        inlineCollapsed={collapsed && !mobile}
-        selectedKeys={[selectedKey]}
-        items={items}
-        style={{
-          background: "transparent",
-          color: TEXT_COLOR,
-          fontWeight: 500,
-          borderRight: "none",
-          padding: "0 8px",
-          flex: 1,
-        }}
+        selectedKeys={[getSelectedKey()]}
+        items={menuItems}
+        style={{ padding: "16px 10px", fontWeight: 500 }}
       />
     </div>
   );
 
   return (
-    <Layout style={{ minHeight: "100vh", background: LIGHT_GRAY }}>
+    <Layout style={{ minHeight: "100vh", background: BRAND.lightBg }}>
+      {/* Desktop Sidebar */}
       {!mobile && (
         <Sider
           collapsible
           collapsed={collapsed}
           trigger={null}
-          width={240}
+          width={250}
           collapsedWidth={70}
           style={{
             height: "100vh",
             position: "fixed",
             left: 0,
-            background: "#fff",
-            borderRight: "1px solid #e5e7eb",
-            zIndex: 100,
+            background: BRAND.white,
+            borderRight: "1px solid #dbeafe",
+            boxShadow: "2px 0 10px rgba(0,0,0,0.05)",
           }}
         >
           {SidebarContent}
         </Sider>
       )}
 
+      {/* Mobile Sidebar */}
       {mobile && (
         <Drawer
           placement="left"
           closable={false}
-          onClose={() => setDrawerOpen(false)}
           open={drawerOpen}
-          bodyStyle={{ padding: 0, background: "#fff" }}
+          onClose={() => setDrawerOpen(false)}
+          bodyStyle={{ padding: 0 }}
           width={220}
         >
           {SidebarContent}
         </Drawer>
       )}
 
-      {/* ===== Main Area ===== */}
+      {/* Main Page Layout */}
       <Layout
         style={{
-          marginLeft: !mobile ? (collapsed ? 70 : 240) : 0,
-          transition: "all 0.3s ease",
-          background: "#fff",
-          minHeight: "100vh",
+          marginLeft: !mobile ? (collapsed ? 70 : 250) : 0,
+          transition: "0.3s ease",
         }}
       >
         {/* Header */}
         <Header
           style={{
-            position: "fixed",
-            top: 0,
-            left: !mobile ? (collapsed ? 70 : 240) : 0,
-            right: 0,
-            height: 64,
-            background: "#fff",
-            borderBottom: "1px solid #f1f5f9",
-            padding: "0 16px",
+            height: 70,
+            background: BRAND.white,
+            padding: "0 20px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            borderBottom: "1px solid #dbeafe",
+            position: "fixed",
+            top: 0,
+            left: !mobile ? (collapsed ? 70 : 250) : 0,
+            right: 0,
             zIndex: 2000,
           }}
         >
-          {/* Left: mobile menu + logo */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          {/* Left */}
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
             {mobile && (
               <Button
                 type="text"
                 icon={<MenuUnfoldOutlined />}
                 onClick={() => setDrawerOpen(true)}
-                style={{ color: SOLAR_PRIMARY, fontSize: 20 }}
+                style={{ fontSize: 22, color: BRAND.primary }}
               />
             )}
-            <img
-              src="https://www.brihaspathi.com/highbtlogo%20tm%20(1).png"
-              alt="BTPL Logo"
-              style={{ height: 36, objectFit: "contain" }}
-            />
-            {!mobile && (
-              <h2
-                style={{
-                  margin: 0,
-                  fontSize: "1.25rem",
-                  fontWeight: 600,
-                  color: SOLAR_PRIMARY,
-                }}
-              >
-                Solar Energy Dashboard
-              </h2>
-            )}
+
+            <h1
+              style={{
+                margin: 0,
+                fontWeight: 700,
+                fontSize: "clamp(1.1rem, 2.2vw, 1.8rem)",
+                color: BRAND.primary,
+                letterSpacing: "-0.03em",
+              }}
+            >
+              District Coordinator
+            </h1>
           </div>
 
-          {/* Right: notifications + avatar */}
-          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <Dropdown overlay={notificationMenu} trigger={["click"]}>
-              <Tooltip title="Notifications">
-                <Badge count={3} size="small">
-                  <Button
-                    type="text"
-                    icon={<BellOutlined />}
-                    style={{ color: SOLAR_PRIMARY, fontSize: 18 }}
-                  />
-                </Badge>
-              </Tooltip>
-            </Dropdown>
-
-            <Avatar
-              size={36}
-              src="https://www.brihaspathi.com/highbtlogo%20tm%20(1).png"
-              style={{ border: `2px solid ${SOLAR_PRIMARY}` }}
+          {/* Right */} 
+          <Tooltip title="Logout">
+            <Button
+              type="text"
+              icon={<LogoutOutlined />}
+              style={{ color: "#ef4444", fontSize: 18 }}
+              onClick={() => {
+                localStorage.clear();
+                navigate("/login");
+              }}
             />
-          </div>
+          </Tooltip>
         </Header>
 
-        {/* ===== Page Content ===== */}
+        {/* Page Content */}
         <Content
           style={{
-            marginTop: 64,
-            padding: mobile ? 16 : 24,
-            minHeight: "calc(100vh - 64px)",
-            background: "#fff",
+            marginTop: 70,
+            padding: mobile ? "10px" : "20px",
+            minHeight: "100vh",
+            backgroundColor: "#f8fafc",
           }}
         >
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
           >
             <Outlet />
           </motion.div>

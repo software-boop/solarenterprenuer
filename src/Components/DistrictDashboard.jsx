@@ -9,6 +9,12 @@ import {
   Tag,
   Table,
 } from "antd";
+import dayjs from "dayjs";
+import weekday from "dayjs/plugin/weekday";
+import isoWeek from "dayjs/plugin/isoWeek";
+dayjs.extend(weekday);
+dayjs.extend(isoWeek);
+
 import { BarChart } from "@mui/x-charts/BarChart";
 import axios from "axios";
 import {
@@ -114,7 +120,7 @@ const DistrictDashboard = () => {
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       <h1 className="text-3xl font-bold mb-6 text-center" style={{ color: BRAND }}>
-        📊 District Coordinator Analytics Dashboard
+      
       </h1>
 
       {loading ? (
@@ -124,99 +130,161 @@ const DistrictDashboard = () => {
       ) : (
         <>
           {/* ====== Summary Cards ====== */}
-          <Row gutter={[16, 16]} className="mb-8">
-            <Col xs={24} sm={12} md={6}>
-              <Card hoverable>
-                <Statistic
-                  title="Total Registered"
-                  value={total}
-                  prefix={<UserOutlined style={{ color: BRAND }} />}
-                  valueStyle={{ color: BRAND }}
-                />
-              </Card>
-            </Col>
+        <Row gutter={[16, 16]} className="mb-8">
+  {/* Total Registered */}
+  <Col xs={24} sm={12} md={6}>
+    <Card
+      hoverable
+      style={{
+        background: BRAND,
+        borderRadius: 12,
+        border: "none",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
+      }}
+    >
+      <Statistic
+        title={
+          <span style={{ color: "#ffffff", fontWeight: 500 }}>
+            Total Registered
+          </span>
+        }
+        value={total}
+        prefix={<UserOutlined style={{ color: "#ffffff" }} />}
+        valueStyle={{ color: "#ffffff", fontWeight: 700 }}
+      />
+    </Card>
+  </Col>
 
-            <Col xs={24} sm={12} md={6}>
-              <Card hoverable>
-                <Statistic
-                  title="Today's Registrations"
-                  value={stats.todayCount}
-                  prefix={<CalendarOutlined style={{ color: "#16a34a" }} />}
-                  valueStyle={{ color: "#16a34a" }}
-                />
-              </Card>
-            </Col>
+  {/* Today's Registrations */}
+  <Col xs={24} sm={12} md={6}>
+    <Card
+      hoverable
+      style={{
+        background: "#16a34a",
+        borderRadius: 12,
+        border: "none",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
+      }}
+    >
+      <Statistic
+        title={
+          <span style={{ color: "#ffffff", fontWeight: 500 }}>
+            Today's Registrations
+          </span>
+        }
+        value={stats.todayCount}
+        prefix={<CalendarOutlined style={{ color: "#ffffff" }} />}
+        valueStyle={{ color: "#ffffff", fontWeight: 700 }}
+      />
+    </Card>
+  </Col>
 
-            <Col xs={24} sm={12} md={6}>
-              <Card hoverable>
-                <Statistic
-                  title="Accepted"
-                  value={accepted}
-                  prefix={<CheckCircleOutlined style={{ color: "green" }} />}
-                  valueStyle={{ color: "green" }}
-                />
-              </Card>
-            </Col>
+  {/* Accepted */}
+  <Col xs={24} sm={12} md={6}>
+    <Card
+      hoverable
+      style={{
+        background: "#22c55e",
+        borderRadius: 12,
+        border: "none",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
+      }}
+    >
+      <Statistic
+        title={
+          <span style={{ color: "#ffffff", fontWeight: 500 }}>Accepted</span>
+        }
+        value={accepted}
+        prefix={<CheckCircleOutlined style={{ color: "#ffffff" }} />}
+        valueStyle={{ color: "#ffffff", fontWeight: 700 }}
+      />
+    </Card>
+  </Col>
 
-            <Col xs={24} sm={12} md={6}>
-              <Card hoverable>
-                <Statistic
-                  title="Pending"
-                  value={pending}
-                  prefix={<ClockCircleOutlined style={{ color: "orange" }} />}
-                  valueStyle={{ color: "orange" }}
-                />
-              </Card>
-            </Col>
+  {/* Pending */}
+  <Col xs={24} sm={12} md={6}>
+    <Card
+      hoverable
+      style={{
+        background: "#f97316",
+        borderRadius: 12,
+        border: "none",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
+      }}
+    >
+      <Statistic
+        title={
+          <span style={{ color: "#ffffff", fontWeight: 500 }}>Pending</span>
+        }
+        value={pending}
+        prefix={<ClockCircleOutlined style={{ color: "#ffffff" }} />}
+        valueStyle={{ color: "#ffffff", fontWeight: 700 }}
+      />
+    </Card>
+  </Col>
 
-            <Col xs={24} sm={12} md={6}>
-              <Card hoverable>
-                <Statistic
-                  title="Rejected"
-                  value={rejected}
-                  prefix={<CloseCircleOutlined style={{ color: "red" }} />}
-                  valueStyle={{ color: "red" }}
-                />
-              </Card>
-            </Col>
-          </Row>
+  {/* Rejected */}
+  <Col xs={24} sm={12} md={6}>
+    <Card
+      hoverable
+      style={{
+        background: "#ef4444",
+        borderRadius: 12,
+        border: "none",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
+      }}
+    >
+      <Statistic
+        title={
+          <span style={{ color: "#ffffff", fontWeight: 500 }}>Rejected</span>
+        }
+        value={rejected}
+        prefix={<CloseCircleOutlined style={{ color: "#ffffff" }} />}
+        valueStyle={{ color: "#ffffff", fontWeight: 700 }}
+      />
+    </Card>
+  </Col>
+</Row>
 
           {/* ====== Weekly Bar Chart ====== */}
-          <Card
-            title="📅 Weekly Registration Trend"
-            style={{
-              borderRadius: 12,
-              marginBottom: 24,
-              boxShadow: "0 4px 8px rgba(0,0,0,0.05)",
-            }}
-          >
-            {stats.weekly.length ? (
-              <div style={{ overflowX: "auto" }}>
-                <BarChart
-                  xAxis={[
-                    {
-                      scaleType: "band",
-                      data: stats.weekly.map((d) =>
-                        d.day.slice(5).replace("-", "/")
-                      ),
-                      label: "Date",
-                    },
-                  ]}
-                  series={[
-                    {
-                      data: stats.weekly.map((d) => d.count),
-                      label: "Registrations",
-                      color: BRAND,
-                    },
-                  ]}
-                  width={600}
-                  height={300}
-                />
-              </div>
-            ) : (
-              <p>No data available for this week</p>
-            )}
-          </Card>
+        <Card
+  title="📅 Weekly Registration Trend"
+  style={{
+    borderRadius: 12,
+    marginBottom: 24,
+    boxShadow: "0 4px 8px rgba(0,0,0,0.05)",
+  }}
+>
+  {stats.weekly.length ? (
+    <div style={{ overflowX: "auto" }}>
+      <BarChart
+        xAxis={[
+          {
+            scaleType: "band",
+            data: stats.weekly.map((d) => {
+              const formattedDate = dayjs(d.day);
+              return `${formattedDate.format("DD/MM")} (${formattedDate.format(
+                "ddd"
+              )})`; // e.g., 21/02 (Fri)
+            }),
+            label: "Day",
+          },
+        ]}
+        series={[
+          {
+            data: stats.weekly.map((d) => d.count),
+            label: "Registrations",
+            color: BRAND,
+          },
+        ]}
+        width={600}
+        height={300}
+      />
+    </div>
+  ) : (
+    <p>No data available for this week</p>
+  )}
+</Card>
 
           {/* ====== Recent Table ====== */}
           <Card

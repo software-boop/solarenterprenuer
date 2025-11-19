@@ -43,7 +43,7 @@ export default function Login() {
       // 🧭 Redirect
       setTimeout(() => {
         if (userRole === "admin") navigate("/admin", { replace: true });
-        else if (userRole === "district") navigate("/district-coordinator", { replace: true });
+        else if (userRole === "district") navigate("/district-cordinator", { replace: true });
         else navigate("/", { replace: true });
       }, 600);
     } catch (err) {
@@ -143,7 +143,7 @@ export default function Login() {
           </Form>
 
           {/* Forgot Password (Optional) */}
-          <div className="text-right mt-3">
+          {/* <div className="text-right mt-3">
             <a
               href="#"
               onClick={() => toast("Please contact the admin to reset your password.")}
@@ -151,7 +151,7 @@ export default function Login() {
             >
               Forgot password?
             </a>
-          </div>
+          </div> */}
         </Card>
 
         {/* Footer */}
@@ -168,7 +168,7 @@ export default function Login() {
             rel="noreferrer"
             className="font-semibold underline"
           >
-            Brihaspathi Technologies Pvt. Ltd.
+            Brihaspathi Technologies Limited
           </a>
         </motion.div>
       </motion.div>
