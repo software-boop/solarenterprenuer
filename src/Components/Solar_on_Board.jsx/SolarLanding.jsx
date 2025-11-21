@@ -14,7 +14,7 @@ export default function SolarLanding({ onRegister }) {
       <motion.img
         src="https://www.brihaspathi.com/highbtlogo%20tm%20(1).png"
         alt="Brihaspathi Technologies Logo"
-        className="w-40 md:w-48 mb-6"
+        className="w-80 md:w-48 mb-6"
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}

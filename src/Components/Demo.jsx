@@ -11,7 +11,7 @@ import { BackgroundBeamsWithCollision } from "./BackgroundBeamsWithCollision";
 import solarlogo from "../assets/images/MNRE_India1(1).png";
 import solarlogo_1 from "../assets/images/Niesbud-High-Resolution-Logo(1).png";
 import solarlogo_2 from "../assets/images/REC_logo.svg (1) (1).png";
-import solarlogo_3 from "../assets/images/Skill-India(1).webp";
+import solarlogo_3 from "../assets/images/Untitled_design.jpg";
 import mainweb_logo from "../assets/images/highbtlogo white- tm.png";
 import background_image from "../assets/images/renewable-power-generation-through-hybrid-energy-farm-with-wind-turbines-solar-panels-concept-renewable-energy-power-generation-hybrid-energy-farm-wind-turbines-solar-panels.jpg";
 
@@ -55,7 +55,7 @@ const Demo = () => {
                     src={logo}
                     alt={`logo-${i}`}
                     className="object-contain"
-                    style={{ width: "100%", maxHeight: "45px" }}
+                    style={{ width: "100%", maxHeight: "85px" }}
                   />
                 </Card>
               </Col>

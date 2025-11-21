@@ -39,7 +39,7 @@ const { Option } = Select;
 import solarlogo from "../../assets/images/MNRE_India1(1).png";
 import solarlogo_1 from "../../assets/images/Niesbud-High-Resolution-Logo(1).png";
 import solarlogo_2 from "../../assets/images/REC_logo.svg (1) (1).png";
-import solarlogo_3 from "../../assets/images/Skill-India(1).webp";
+import solarlogo_3 from "../../assets/images/Untitled_design.jpg";
 
 // =====================
 // 📍 Data (ONLY AP)
@@ -151,7 +151,7 @@ export default function SolarForm({ onSuccess }) {
         >
           <Card
             bordered={false}
-            className="w-full max-w-2xl shadow-xl"
+            className="w-full max-w-2xl shadow-xl  "
             style={{
               borderRadius: 20,
               backgroundColor: "white",
@@ -159,23 +159,25 @@ export default function SolarForm({ onSuccess }) {
             }}
           >
             {/* Logos */}
-            <div className="text-center py-6 border-b border-gray-200">
-              <Space wrap align="center" className="justify-center gap-6">
-                {[solarlogo, solarlogo_1, solarlogo_2, solarlogo_3].map(
-                  (logo, i) => (
-                    <motion.img
-                      key={i}
-                      src={logo}
-                      alt="Partner Logo"
-                      className="h-14 w-auto opacity-90"
-                      initial={{ scale: 0.9, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: 0.1 * i }}
-                    />
-                  )
-                )}
-              </Space>
-            </div>
+         <div className="text-center py-6 border-b border-gray-200">
+  <Space wrap align="center" className="justify-center space-x-15">
+    {[solarlogo, solarlogo_1, solarlogo_2, ].map((logo, i) => (
+      <motion.img
+        key={i}
+        src={logo}
+        alt="Partner Logo"
+        className="h-20 w-auto opacity-90"  // ⬅️ INCREASED SIZE
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.1 * i }}
+      />
+    ))}
+  </Space>
+</div>
+<div>
+<div className="flex justify-center"><img src={solarlogo_3} alt=""  className="h-30 w-30 "/></div>
+
+</div>
 
             <div className="px-6 pb-8">
               <Progress
@@ -341,7 +343,7 @@ export default function SolarForm({ onSuccess }) {
                     color: TEXT_SUB,
                   }}
                 >
-                  📍 Your location will be captured automatically for verification.
+                  {/* 📍 Your location will be captured automatically for verification. */}
                 </Text>
               </Form>
             </div>
