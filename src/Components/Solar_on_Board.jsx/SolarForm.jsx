@@ -41,17 +41,11 @@ import solarlogo_1 from "../../assets/images/Niesbud-High-Resolution-Logo(1).png
 import solarlogo_2 from "../../assets/images/REC_logo.svg (1) (1).png";
 import solarlogo_3 from "../../assets/images/Untitled_design.jpg";
 
-// =====================
-// 📍 Data (ONLY AP)
-// =====================
+
 const states = ["Andhra Pradesh"];
 
 const districtsAP = [
-  "Alluri Sitarama Raju", "Anakapalli", "Anantapur", "Annamayya", "Bapatla",
-  "Chittoor", "East Godavari", "Eluru", "Guntur", "Kakinada", "Konaseema",
-  "Krishna", "Kurnool", "Nandyal", "NTR", "Palnadu", "Parvathipuram Manyam",
-  "Prakasam", "Sri Potti Sriramulu, Nellore", "Sri Sathya Sai", "Srikakulam",
-  "Tirupati", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"
+"Kurnool","Tirupati", "Visakhapatnam","YSR Kadapa","NTR","Kakinada",
 ];
 
 // =====================

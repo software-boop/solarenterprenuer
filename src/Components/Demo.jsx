@@ -64,7 +64,7 @@ const Demo = () => {
           src={logo}
           alt={`logo-${i}`}
           className="
-            object-cover
+            object-co
             max-h-[70px]      /* Mobile */
             sm:max-h-[55px]   /* Tablets */
             md:max-h-[65px]   /* Medium Screens */
