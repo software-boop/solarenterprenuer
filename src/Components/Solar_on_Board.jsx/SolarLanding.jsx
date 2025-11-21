@@ -28,7 +28,16 @@ export default function SolarLanding({ onRegister }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.8 }}
       >
-        Solar Trainee Entrepreneur Program
+     Solar Entrepreneurship Program
+      </motion.h1>
+            <motion.h1
+        className="text-xl md:text-xl font-bold mb-1 leading-tight"
+        style={{ color: BRAND }}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.8 }}
+      >
+ Training program is organized by NIESBUD conducted by  Brihaspathi
       </motion.h1>
 
       {/* Subtitle */}

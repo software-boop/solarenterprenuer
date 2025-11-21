@@ -159,23 +159,47 @@ export default function SolarForm({ onSuccess }) {
             }}
           >
             {/* Logos */}
-         <div className="text-center py-6 border-b border-gray-200">
-  <Space wrap align="center" className="justify-center space-x-15">
-    {[solarlogo, solarlogo_1, solarlogo_2, ].map((logo, i) => (
-      <motion.img
-        key={i}
-        src={logo}
-        alt="Partner Logo"
-        className="h-20 w-auto opacity-90"  // ⬅️ INCREASED SIZE
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.1 * i }}
-      />
-    ))}
-  </Space>
-</div>
+ <Row gutter={[12, 12]} justify="center" className="mb-6 sm:mb-10">
+  {[solarlogo, solarlogo_1, solarlogo_2, solarlogo_3].map((logo, i) => (
+    <Col xs={12} sm={8} md={6} lg={6} key={i}>
+      <Card
+        hoverable
+        style={{
+          borderRadius: "12px",
+          padding: "10px",
+          height: "110px",                     // SAME HEIGHT FOR ALL DEVICES
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "rgba(255,255,255,0.08)",
+          backdropFilter: "blur(6px)",
+        }}
+        bodyStyle={{
+          padding: 0,
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          src={logo}
+          alt={`logo-${i}`}
+          className="
+            object-contain
+            max-h-[70px]      /* Mobile */
+            sm:max-h-[55px]   /* Tablets */
+            md:max-h-[65px]   /* Medium Screens */
+            lg:max-h-[75px]   /* Large Screens */
+          "
+          style={{ transition: "transform 0.3s ease" }}
+        />
+      </Card>
+    </Col>
+  ))}
+</Row>
 <div>
-<div className="flex justify-center"><img src={solarlogo_3} alt=""  className="h-30 w-30 "/></div>
+
 
 </div>
 

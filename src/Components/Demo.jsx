@@ -36,31 +36,46 @@ const Demo = () => {
         <div className="text-center mx-auto w-full max-w-4xl">
 
           {/* 🔹 Partner Logos */}
-          <Row gutter={[12, 12]} justify="center" className="mb-6 sm:mb-10">
-            {[solarlogo, solarlogo_1, solarlogo_2, solarlogo_3].map((logo, i) => (
-              <Col xs={6} sm={6} md={6} lg={6} key={i}>
-                <Card
-                  hoverable
-                  style={{
-                    borderRadius: "10px",
-                    padding: "6px",
-                    minHeight: "60px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  bodyStyle={{ padding: 6 }}
-                >
-                  <img
-                    src={logo}
-                    alt={`logo-${i}`}
-                    className="object-contain"
-                    style={{ width: "100%", maxHeight: "85px" }}
-                  />
-                </Card>
-              </Col>
-            ))}
-          </Row>
+    <Row gutter={[12, 12]} justify="center" className="mb-6 sm:mb-10">
+  {[solarlogo, solarlogo_1, solarlogo_2, solarlogo_3].map((logo, i) => (
+    <Col xs={12} sm={8} md={6} lg={6} key={i}>
+      <Card
+        hoverable
+        style={{
+          borderRadius: "12px",
+          backgroundColor:"white",
+          padding: "10px",
+          height: "110px",                     // SAME HEIGHT FOR ALL DEVICES
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "rgba(255,255,255,0.08)",
+          backdropFilter: "blur(6px)",
+        }}
+        bodyStyle={{
+          padding: 0,
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          src={logo}
+          alt={`logo-${i}`}
+          className="
+            object-cover
+            max-h-[70px]      /* Mobile */
+            sm:max-h-[55px]   /* Tablets */
+            md:max-h-[65px]   /* Medium Screens */
+            lg:max-h-[96px]   /* Large Screens */
+          "
+          style={{ transition: "transform 0.3s ease" }}
+        />
+      </Card>
+    </Col>
+  ))}
+</Row>
 
           {/* 🔸 Main Logo */}
           <img
@@ -68,13 +83,13 @@ const Demo = () => {
             alt="Main Logo"
             className="mx-auto mb-4 sm:mb-6"
             style={{
-              width: "60px",
+              width: "400px",
               height: "auto",
             }}
           />
 
           {/* 🔻 Headline */}
-          <Title
+         <div className="bg-black rounded-2xl h-36" > <Title
             level={2}
             style={{
               color: "white",
@@ -104,7 +119,7 @@ const Demo = () => {
             <span style={{ color: "#ffa940", fontWeight: "600" }}>
               Solar Entrepreneurship Program
             </span>.
-          </Paragraph>
+          </Paragraph></div>
 
           {/* 🔘 Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-4">
