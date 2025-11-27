@@ -45,7 +45,7 @@ import solarlogo_3 from "../../assets/images/Untitled_design.jpg";
 const states = ["Andhra Pradesh"];
 
 const districtsAP = [
-"Kurnool","Tirupati", "Visakhapatnam","YSR Kadapa","NTR","Kakinada",
+"Kurnool",
 ];
 
 // =====================
@@ -196,7 +196,6 @@ export default function SolarForm({ onSuccess }) {
 
 
 </div>
-
             <div className="px-6 pb-8">
               <Progress
                 percent={Math.round(progress)}
